@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: gene-blog
+  name: gene-blog
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: gene-blog
+  template:
+    metadata:
+      labels:
+        app: gene-blog
+    spec:
+      containers:
+      - name: gene-blog-test
+        image: 102414258269.dkr.ecr.ap-south-1.amazonaws.com/gene-test:$(BUILD_NUMBER)
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8084
+          name: http
+          protocol: TCP
+# service type loadbalancer       
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: gene-blog
+    k8s-app: gene-blog
+  name: gene-blog
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8084
+  type: LoadBalancer
+  selector:
+    app: gene-blog
