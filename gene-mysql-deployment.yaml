@@ -12,7 +12,7 @@ spec:
   selector:
     app: mysql
     tier: database
-  clusterIP: None # DNS is used, so clusterIP is not needed
+  
 
 ---
 # Define a 'Persistent Volume Claim'(PVC) for MySQL Storage, dynamically provisioned by cluster
