@@ -57,7 +57,7 @@ spec:
           imagePullPolicy: "IfNotPresent"
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: root
+              value: qpon1234
             - name: MYSQL_DATABASE
               value: blog_db_devops
           ports:
